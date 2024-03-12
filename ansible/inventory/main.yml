@@ -2,11 +2,11 @@
 
 all:
   hosts:
-    rabbitmq.youyout.com.tr:
+    sub.domain.com:
 
 
 
 rabbitmq:
   hosts:
-    rabbitmq.youyout.com.tr:
+    sub.domain.com:
 
