@@ -1,0 +1,11 @@
+---
+
+
+#RABBITMQ_USERNAME : "admin"
+#RABBITMQ_PASSWORD : "adminadmin"
+#VHOST_NAME : "home"
+#QUEUE_USERNAME : "sina"
+#QUEUE_PASSWORD : "sinasina"
+#QUEUE_NAME : "home-queue"
+
+

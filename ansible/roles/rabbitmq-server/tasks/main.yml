@@ -1,0 +1,73 @@
+---
+
+- name: install packages
+  apt:
+    name: "{{ item }}"
+    state: present
+    update_cache: yes
+
+  loop:
+     - curl
+     - git
+     - gnupg
+     - apt-transport-https
+     - rabbitmq-server
+
+
+
+- name: Start service rabbitmq
+  ansible.builtin.service:
+    name:  rabbitmq-server
+    state: started
+
+- name: Enables the rabbitmq_management plugin
+  community.rabbitmq.rabbitmq_plugin:
+    names: rabbitmq_management
+    state: enabled
+
+
+
+- name: Add user to RabbitMQ and assign full access control
+  community.rabbitmq.rabbitmq_user:
+    user: "{{ RABBITMQ_USERNAME }}"
+    password: "{{ RABBITMQ_PASSWORD }}"
+    vhost: /
+    configure_priv: .*
+    write_priv: .*
+    read_priv: .*
+    tags: administrator
+    state: present
+
+- name: Ensure that the vhost exists.
+  community.rabbitmq.rabbitmq_vhost:
+    name: "/{{ VHOST_NAME }}"
+    state: present
+
+- name: Add user to RabbitMQ and assign full access control
+  community.rabbitmq.rabbitmq_user:
+    user: "{{ VHOSTADMIN_USERNAME }}"
+    password: "{{ VHOSTADMIN_PASSWORD }}"
+    vhost: "/{{ VHOST_NAME }}"
+    configure_priv: .*
+    write_priv: .*
+    read_priv: .*
+    tags: administrator
+    state: present
+
+
+
+- name: Create a queue on remote host
+  community.rabbitmq.rabbitmq_queue:
+    name: "{{ QUEUE_NAME }}"
+    login_user: "{{ VHOSTADMIN_USERNAME }}"
+    login_password: "{{ VHOSTADMIN_PASSWORD }}"
+    vhost : "/{{ VHOST_NAME }}"
+
+
+
+- name: reStart service rabbitmq
+  ansible.builtin.service:
+    name:  rabbitmq-server
+    state: restarted
+
+

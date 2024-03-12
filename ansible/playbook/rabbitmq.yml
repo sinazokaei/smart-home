@@ -1,0 +1,7 @@
+---
+
+
+- name: install and config rabbitmq
+  hosts: rabbitmq
+  roles:
+    - rabbitmq-server

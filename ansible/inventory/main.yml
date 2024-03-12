@@ -1,0 +1,12 @@
+---
+
+all:
+  hosts:
+    rabbitmq.youyout.com.tr:
+
+
+
+rabbitmq:
+  hosts:
+    rabbitmq.youyout.com.tr:
+
