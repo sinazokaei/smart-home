@@ -1,4 +1,4 @@
-#Description
+Description
 
 For this project, we have three main components:
 a home section, which requires a Raspberry Pi, and sensors are connected directly to the Raspberry Pi using Internet of Things (IoT) protocols or wired connections.
