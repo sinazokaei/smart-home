@@ -3,10 +3,16 @@
 all:
   hosts:
     sub.domain.com:
+    sub2.domain2.com:
 
 
 
 rabbitmq:
   hosts:
     sub.domain.com:
+
+
+flask-server:
+  hosts:
+    sub2.domain2.com:
 
